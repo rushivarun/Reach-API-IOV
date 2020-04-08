@@ -8,14 +8,14 @@ import (
 
 func execute() {
 
-	out, err := exec.Command("iwlist", "scanning").Output()
+	out, err := exec.Command("iw", "wlp2s0", "station", "dump", "|", "grep", "'signal avg:'").Output()
 
 	if err != nil {
 		fmt.Println("error : ", err)
 	}
 
 	fmt.Println("command successfully executed...")
-	output := string(out[:])
+	output := string(out)
 
 	fmt.Println(output)
 }
