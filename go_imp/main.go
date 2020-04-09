@@ -4,12 +4,16 @@ import (
 	"fmt"
 	"os/exec"
 	"runtime"
+	"strings"
 )
 
 func execute() {
 
-	out, err := exec.Command("iw", "wlp2s0", "station", "dump", "|", "grep", "'signal avg:'").Output()
-
+	s := "iwlist scanning"
+	arg := strings.Split(s, " ")
+	cmd := exec.Command(arg[0], arg[1:]...)
+	fmt.Println(cmd)
+	out, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Println("error : ", err)
 	}
