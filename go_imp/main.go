@@ -3,14 +3,16 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"regexp"
 	"runtime"
 	"strings"
 )
 
 func execute() {
 
-	s := "iwlist scanning"
+	s := "sudo iw wlp2s0 scan"
 	arg := strings.Split(s, " ")
+	fmt.Println(s)
 	cmd := exec.Command(arg[0], arg[1:]...)
 	fmt.Println(cmd)
 	out, err := cmd.CombinedOutput()
@@ -20,8 +22,9 @@ func execute() {
 
 	fmt.Println("command successfully executed...")
 	output := string(out)
+	a, err := regexp.MatchString(`signal`, output)
 
-	fmt.Println(output)
+	fmt.Println(a)
 }
 
 func main() {
