@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"reflect"
 	"regexp"
 	"runtime"
 	"strings"
@@ -17,14 +18,14 @@ func execute() {
 	fmt.Println(cmd)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
-		fmt.Println("error : ", err)
+		fmt.Println("error is here : ", err)
 	}
 
 	fmt.Println("command successfully executed...")
 	output := string(out)
-	a, err := regexp.MatchString(`signal`, output)
-
-	fmt.Println(a)
+	r, _ := regexp.Compile("s([a-z]+)gnal")
+	fmt.Println(r.FindAllString("signal", 2))
+	fmt.Println(reflect.TypeOf(output))
 }
 
 func main() {
