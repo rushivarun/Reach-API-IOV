@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-#
-# iwlistparse.py
-# Hugo Chargois - 17 jan. 2010 - v.0.1
-# Parses the output of iwlist scan into a table
-
 import sys
 
 # You can add or change the functions to parse the properties of each AP (cell)
@@ -102,7 +96,7 @@ def print_table(table):
     for line in table:
         justified_line=[]
         for i,el in enumerate(line):
-            justified_line.append(el.ljust(widths[i]+2))
+            justified_line.append(el.ljust(line[i]+2))
         justified_table.append(justified_line)
     
     for line in justified_table:
